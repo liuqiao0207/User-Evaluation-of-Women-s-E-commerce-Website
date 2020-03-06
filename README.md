@@ -48,4 +48,61 @@ A simple example with the function *whatpoint*: extremely good = 3; very good = 
 First we clean the data whose reviews and titles are blank. Second we read and turn **`positive-words.txt;negative-words(1).txt;NegatingWordList.txt;adv-words.txt`** into lists. Third we create funtion whatpoint() and howmany() to get the emotion mark for each text. Fourth we use new lists to collect the results of the functions and add new column on the pd.read dataframe, `'number_title'`, `'point_title'`, `'number_comment'`, `'point_comment'`.
 
 It takes about 2.5 minutes to get the 4 new lists of the emotion marks for title and reviews under different measurements.
+### 3. Sales volume by department
 
+The chart below shows the proportion of sales in different departments. As you can see from the pie chart below, the Jackets department has the highest sales volume, accounting for 44.6%, which is the largest proportion. Jackets department was followed by Dresses, Intimate, accounting for 26.9% and 16.2% respectively. This was followed by the Bottoms and Tops divisions, which accounted for 7.4% and 4.4% respectively. The Trend department accounts for the smallest proportion , which accounts for only 0.5%. Therefore, the company should continue to maintain the sales of the Jackets department, while focusing on rectifying and improving the Trend department, thereby improving the company's performance.
+### 4. Top five products with the most sales
+
+The chart below shows what the top five products are. As can be seen from the figure below, the product with the product ID of 1078 has the highest sales volume, followed by the products of 862, 1094, 1081, and 872. Therefore, companies should focus on the top five products.
+### 5. The highest and lowest rating product
+
+The following shows the highest rated products and the lowest rated products. For products with high scores, the company should continue to make it a star product of the site. For products with low scores, companies need to find reasons for customers' dissatisfaction and low scores, improve or directly remove these products, and enhance customer satisfaction. There are almost 400 products which are ranked at 5, but many of which are actually have only 1 customer.
+### 6. What is the age distribution of customers?
+
+The following shows the age distribution of customers. By segmenting the age of the customer (the segmentation standard refers to https://zhidao.baidu.com/question/217291248.html ),
+the age range can be cut in 0-12 years old for children's wear, 13-20 years old for youth, 21-30 years old for young ladies, 31-45 years old for middle-aged wear and 46 years old and older for old age. As can be seen from the figure, the main customers of the website are middle-aged and elderly people aged 31-45 and older, followed by young people aged 21-30, and almost no one is 0-12 years old and 13-20 years old. It can be seen that the target group of the website is middle-aged and elderly women. The 31-45-year-old group is also the group with higher consumption in the women's clothing market. They have stable work, certain economic ability, stress on life and high requirements for clothing value. The demand for old people's (45 years old) Above) clothing is not large, and the purchase desire is this group is low. However, the 31-45-year-old group and the people over the age of 45 have no particularly high requirements for fashion, fashion, and personalization. This explains why the sales volume of the trend department is particularly low in the first point.
+### 7. What is the most popular item in each age group?
+
+The following is the most popular products of every age group. It can be seen that in each age group, the most popular goods is No.1078. It can be seen that No.1078 item is suitable for all ages and is loved by all ages.
+### 8. Are older people more inclined to recommend a product or younger people?
+
+The relationship between recommendation and age is obtained by calculating the average age of customers who select to recommended item. As can be seen from the following figure and the table below, the average age of customers who choose not to recommend products is 42.3, and the average age of customers who choose recommended products is 43.3. So there is no such thing as older people prefer to recommend products or young people prefer to recommend products.
+### 9. Is the rating correlated to your measure of negativity-positivity? 
+
+We draw the graph and apply OLS to 'Rating' and 'point_comment'. We also get all the correlation.
+
+The correlation between rating and my measure of negative-positive is 0.4. And from the graph we can tell that it is a very positive relationship. The R-squared of the OLS method is 0.16 which is very low, but considering this is to test emotion mark in each text, high R-squared is impossible. Customers who give high rating are more likely to have a higher positive emotion mark. Customers who give low rating are more likely to have a negative emotion mark.
+### 10. Which group of reviewers wrote a longer text in their review?
+
+We calculate the length of each comment and apply OLS to length and text's emotion mark. 
+
+From the correlation sheet above we the correlation between point_comment and length_comments is 0.2. From the graph we can also tell that their relationship is positive. The R-squared is very small, so there is not a strong relationship between them. The answer is that very happy or very unhappy customers are more likely to write a longer text, but generally the emotion mark does not affect length of text very much.
+### 11. The relationship between Rating and Recommendation
+
+From the above correlation sheet we can get the correlation between rating and recommendation is 0.79 which is a very positive relationship. By using OLS we get: $Recommedation=0.28*Rating-0.33$. The R-squared is 0.629. The relationship is positive.
+### 12. The relationship between Age and Rating
+
+By drawing the scatter plot of age and rating, the relationship between age and rating is obtained. From the figure and from the correlation sheet above, the correlation between age and rating is as low as 0.035. 
+### 13. Which age group uses more positive words? Which age group uses more negative words?
+
+We get the average number of positive/negative words used in different age groups. As can be seen from the table and chart below, the difference in the number of positive/negative vocabularies used at each age is not very large. 13-20 years old group use the most positive words, using an average of 3.7154 positive words. 31-45 years old group use less positive vocabulary, using an average of 3.379101 positive vocabulary.
+### 14. Is it true that unhappy customers use more capital letters? or it is the other way around?
+
+We first get the number of uppercase letters in the comments, then drew the picture of 'the relationship between the number of uppercase letters in the comments and satisfaction'. 
+
+From the figure below, we can get the number of the uppercase letters in most comments is 1 and the number of uppercase letters in the small part of the comment is 0. There is basically no correlation between satisfaction and the number of uppercase letters. So it is not true that unhappy customers use more capital letters.
+### 15. What is the average rating in positive, negative or neutral reviews?
+
+We first use our results of measurement for review text to judge which are positive, negative or neutral reviews, creating the new column called simple_measure. Then we calculate the average rating based on the classification of simple_measure.
+
+From the result we can tell that usually positive customers give Rating at 4.34, negative customers give Rating at 2.82 and neutral customers give Rating at 3.31.
+### 16. Are there many outliers who wrote a negative text but left a high rating (or vice versa)?
+
+In this question, I set that a high rating is Rating>3, and that a low rating is Rating<3. I set that a positive text is point_comment>0 and that a negative text is point_comment<0.
+
+Based on this assumption, the number of positive outliers with low rating is 1192 and the number of negative outliers with high rating is 373. Therefore, there are actually many outliars. However, this is based on this assumption, if we set a more strict assumption such that positive text are whose point_comment>2, then the number is 564.
+### 17. Which product attracted the most positive or negative reviews?
+
+We first use both 'Product ID' and 'simple_measure' to do the classfication, and then count each kind of product's positive and negative customers individually. Because each product has many customers among who some give positive reviews while some give negative reviews.
+
+The result: there some products such as whose ID are: 1078, 862, 1094... sold a lot and that there are many positve reviews and negative reviews. Because these products sell a lot that we can suggest the sellers focus on these products and do some improvement so that there will be more positive reviews and less negative reviews for this product. We can also tell that some products such as whose ID are: 872, 867... these products are good because they have much more positive reviews than negative reviews. For products such as 1072, the sellers need to do some adjustments because it has more negative reviews.
